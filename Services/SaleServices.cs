@@ -11,7 +11,7 @@ namespace MarcusDesafio.Services
             _context = context;
         }
 
-        //criar outra função p validar o cadastro da venda no tempo
+        //criar outra função p validar o cadastro da venda no tempo ✔
         public async Task<bool> verifySale(Sales sales)
         {
             var verifyClient = _context.Clients.Where(x => x.Id == sales.ClientId);
@@ -23,4 +23,3 @@ namespace MarcusDesafio.Services
         }
     }
 }
-//if(verifyClient.Any() && result.Any()) { }

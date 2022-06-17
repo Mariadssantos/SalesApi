@@ -14,10 +14,13 @@ namespace MarcusDesafio.Services
         //criar outra função p validar o cadastro da venda no tempo
         public async Task<bool> verifySale(Sales sales)
         {
-            var result = _context.Sales.Where(x => x.ValueSale == sales.ValueSale && sales.DateOfSale == DateTime.Now);
-            if (result.Any())
+            var verifyClient = _context.Clients.Where(x => x.Id == sales.ClientId);
+            var minutesSale = sales.DateOfSale.Value.Minute;
+            var verifySale = _context.Sales.Where(x => x.ValueSale == sales.ValueSale && minutesSale > DateTime.Now.Minute);
+            if (verifyClient == null && verifySale == null)
                 return false;
             return true;
         }
     }
 }
+//if(verifyClient.Any() && result.Any()) { }

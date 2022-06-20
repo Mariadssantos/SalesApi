@@ -26,7 +26,7 @@ namespace MarcusDesafio.Controllers
 
         // GET: api/Clients
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Client>>> GetClients()
+        public async Task<ActionResult<IEnumerable<Clients>>> GetClients()
         {
             var clients = await _context.Clients.ToListAsync();
 
@@ -38,7 +38,7 @@ namespace MarcusDesafio.Controllers
 
         // GET: api/Clients/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Client>> GetClient(int id)
+        public async Task<ActionResult<Clients>> GetClient(int id)
         {
           if (_context.Clients == null)
           {
@@ -57,7 +57,7 @@ namespace MarcusDesafio.Controllers
         // PUT: api/Clients/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClient(int id, Client client)
+        public async Task<IActionResult> PutClient(int id, Clients client)
         {
             if (id != client.Id)
             {
@@ -88,7 +88,7 @@ namespace MarcusDesafio.Controllers
         // POST: api/Clients
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<dynamic>> PostClient([FromBody] Client client)
+        public async Task<ActionResult<dynamic>> PostClient([FromBody] Clients client)
         {
             var verify = await _clientServices.validateCpf(client);
 

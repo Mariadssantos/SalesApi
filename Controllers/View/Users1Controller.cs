@@ -10,87 +10,87 @@ using MarcusDesafio.Models;
 
 namespace MarcusDesafio.Controllers
 {
-    public class Clients1Controller : Controller
+    public class Users1Controller : Controller
     {
         private readonly dbContext _context;
 
-        public Clients1Controller(dbContext context)
+        public Users1Controller(dbContext context)
         {
             _context = context;
         }
 
-        // GET: Clients1
+        // GET: Users
         public async Task<IActionResult> Index()
         {
-              return _context.Clients != null ? 
-                          View(await _context.Clients.ToListAsync()) :
-                          Problem("Entity set 'dbContext.Clients'  is null.");
+              return _context.User != null ? 
+                          View(await _context.User.ToListAsync()) :
+                          Problem("Entity set 'dbContext.User'  is null.");
         }
 
-        // GET: Clients1/Details/5
+        // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Clients == null)
+            if (id == null || _context.User == null)
             {
                 return NotFound();
             }
 
-            var client = await _context.Clients
+            var user = await _context.User
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (client == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(client);
+            return View(user);
         }
 
-        // GET: Clients1/Create
+        // GET: Users/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Clients1/Create
+        // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FullName,BirthDate,TypeDoc,Document,Adress,DateRegister,Active")] Clients client)
+        public async Task<IActionResult> Create([Bind("Id,Username,Password,TypeUser,DateRegister")] User user)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(client);
+                _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(client);
+            return View(user);
         }
 
-        // GET: Clients1/Edit/5
+        // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Clients == null)
+            if (id == null || _context.User == null)
             {
                 return NotFound();
             }
 
-            var client = await _context.Clients.FindAsync(id);
-            if (client == null)
+            var user = await _context.User.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
-            return View(client);
+            return View(user);
         }
 
-        // POST: Clients1/Edit/5
+        // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,BirthDate,TypeDoc,Document,Adress,DateRegister,Active")] Clients client)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Password,TypeUser,DateRegister")] User user)
         {
-            if (id != client.Id)
+            if (id != user.Id)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace MarcusDesafio.Controllers
             {
                 try
                 {
-                    _context.Update(client);
+                    _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClientExists(client.Id))
+                    if (!UserExists(user.Id))
                     {
                         return NotFound();
                     }
@@ -115,49 +115,49 @@ namespace MarcusDesafio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(client);
+            return View(user);
         }
 
-        // GET: Clients1/Delete/5
+        // GET: Users/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Clients == null)
+            if (id == null || _context.User == null)
             {
                 return NotFound();
             }
 
-            var client = await _context.Clients
+            var user = await _context.User
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (client == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(client);
+            return View(user);
         }
 
-        // POST: Clients1/Delete/5
+        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Clients == null)
+            if (_context.User == null)
             {
-                return Problem("Entity set 'dbContext.Clients'  is null.");
+                return Problem("Entity set 'dbContext.User'  is null.");
             }
-            var client = await _context.Clients.FindAsync(id);
-            if (client != null)
+            var user = await _context.User.FindAsync(id);
+            if (user != null)
             {
-                _context.Clients.Remove(client);
+                _context.User.Remove(user);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClientExists(int id)
+        private bool UserExists(int id)
         {
-          return (_context.Clients?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.User?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

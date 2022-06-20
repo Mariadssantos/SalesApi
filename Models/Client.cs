@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MarcusDesafio.Models
 {
-    public class Client
+    public class Clients
     {
         public int Id { get; set; }
         public string FullName { get; set; }

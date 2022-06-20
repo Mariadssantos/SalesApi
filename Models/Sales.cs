@@ -12,6 +12,6 @@ namespace MarcusDesafio.Models
         public int ValueSale { get; set; }
         public bool Active { get; set; }
         public int ClientId { get; set; }
-        public Client? Client { get; set; }
+        public Clients? Client { get; set; }
     }
 }

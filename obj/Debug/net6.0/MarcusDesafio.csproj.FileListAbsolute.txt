@@ -964,3 +964,4 @@ C:\Users\Maria Eduarda Santos\Documents\Meus Projetos\MarcusDesafio\obj\Debug\ne
 C:\Users\Maria Eduarda Santos\Documents\Meus Projetos\MarcusDesafio\obj\Debug\net6.0\ref\MarcusDesafio.dll
 C:\Users\Maria Eduarda Santos\Documents\Meus Projetos\MarcusDesafio\obj\Debug\net6.0\MarcusDesafio.pdb
 C:\Users\Maria Eduarda Santos\Documents\Meus Projetos\MarcusDesafio\obj\Debug\net6.0\MarcusDesafio.genruntimeconfig.cache
+C:\Users\Maria Eduarda Santos\Documents\Meus Projetos\MarcusDesafio\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

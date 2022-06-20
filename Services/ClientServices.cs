@@ -12,7 +12,7 @@ namespace MarcusDesafio.Services
             _context = context;
         }
         //validar o cpf 
-        public async Task<bool> validateCpf(Client client)
+        public async Task<bool> validateCpf(Clients client)
         {
             var result = _context.Clients.Where(x => x.Document.Contains(client.Document));
             if (result.Any())

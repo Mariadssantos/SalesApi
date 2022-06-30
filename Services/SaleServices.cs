@@ -1,4 +1,5 @@
 ﻿using MarcusDesafio.Data;
+using MarcusDesafio.Helpers;
 using MarcusDesafio.Models;
 
 namespace MarcusDesafio.Services

@@ -8,20 +8,25 @@ using Microsoft.EntityFrameworkCore;
 using MarcusDesafio.Data;
 using MarcusDesafio.Models;
 using MarcusDesafio.Services;
+using Microsoft.AspNetCore.Authorization;
+using MarcusDesafio.Helpers;
 
 namespace MarcusDesafio.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SalesController : ControllerBase
     {
         private readonly dbContext _context;
         public SaleServices _saleServices;
+        public AuthenticatedUser _user;
 
-        public SalesController(dbContext context, SaleServices saleServices)
+        public SalesController(dbContext context, SaleServices saleServices, AuthenticatedUser user)
         {
             _context = context;
-            _saleServices = saleServices;   
+            _saleServices = saleServices; 
+            _user = user;
         }
 
         // GET: api/Sales
@@ -89,10 +94,13 @@ namespace MarcusDesafio.Controllers
         [HttpPost]
         public async Task<ActionResult<Sales>> PostSales([FromBody] Sales sales)      
         {
-            //data ✔
-            //verificar consulta
             sales.DateOfSale = DateTime.Now;
+
+            int varUserId = Int32.Parse(_user.Id);
+            sales.UserId = varUserId;
+
             var verify = await _saleServices.verifySale(sales);
+
             if (verify == false)
             {
                 return StatusCode(400, "Não é possível cadastrar essa venda hoje.");

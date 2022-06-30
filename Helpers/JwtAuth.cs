@@ -17,8 +17,8 @@ namespace MarcusDesafio.Helpers
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                    new Claim(ClaimTypes.Name, user.Username.ToString())
-                   // new Claim(ClaimTypes.Role, RoleFactory(user.TypeUser))
+                    new Claim(ClaimTypes.Name, user.Username.ToString()),
+                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
                     }),
                     Expires = DateTime.UtcNow.AddHours(5),
 
@@ -29,21 +29,6 @@ namespace MarcusDesafio.Helpers
 
                 return tokenHandler.WriteToken(token);
             }
-
-           /* private static string RoleFactory(int roleNumber)
-            {
-                switch (roleNumber)
-                {
-                    case 0:
-                        return "Director";
-
-                    case 1:
-                        return "Manager";
-
-                    default:
-                        throw new Exception();
-                }
-            }*/
         
 }
 }

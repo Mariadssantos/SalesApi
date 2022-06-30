@@ -24,8 +24,6 @@ namespace MarcusDesafio.Controllers
         {
             try
             {
-                //uma boa prática seria usar DI (Injeção de dependência)
-                //mas não é o foco do artigo
 
                 var userExists = _context.User.Where(x => x.Username.Contains(user.Username)).FirstOrDefault();
 

@@ -1,4 +1,5 @@
 using MarcusDesafio.Data;
+using MarcusDesafio.Helpers;
 using MarcusDesafio.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,8 @@ builder.Services.AddDbContext<dbContext>
 builder.Services.AddScoped<ClientServices>();
 builder.Services.AddScoped<SaleServices>();
 builder.Services.AddScoped<UsersServices>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<AuthenticatedUser>();
 
 var secretKey = "%fc105ba75146fd0/80ce91be53d181d02";
 builder.Services.AddAuthentication(x =>
@@ -56,6 +59,8 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -75,6 +80,7 @@ if (app.Environment.IsDevelopment())
     {
         options.SwaggerEndpoint("./swagger/v1/swagger.json", "v1");
         //options.RoutePrefix = string.Empty;
+        // PRA VER DE PRIMEIRA O SWAGGER É SÓ DESCOMENTAR A LINHA ACIMA
     });
 }
 
